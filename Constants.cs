@@ -8,5 +8,5 @@ namespace CxCE_Demo
     class Constants
     {
         public static string DB_PASSWORD = "Checkmarx123!";
-    }//end class
-}//end namespace
+    }
+}
