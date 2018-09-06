@@ -15,11 +15,12 @@ namespace CxCE_Demo
         protected void submit_Click(object sender, EventArgs e)
         {
             if(isSafe(name.Text))
-                message.Text = makeSafe(name.Text);
+                message.Text = name.Text;
             else
                 message.Text = "You did not type 'safe'.";
-
-        }//end submit_Click
+            
+            meessage.Text += "<br />" + makeSafe(name.Text);
+        }
 
         private void getName()
         {
@@ -38,7 +39,7 @@ namespace CxCE_Demo
                 message.Text = reader["NAME"].ToString();
 
             conn.Close();
-        }//end getName
+        }
 
         private string makeSafe(string text)
         {
@@ -47,7 +48,7 @@ namespace CxCE_Demo
                 return text;
 
             return "Safe";
-        }//end makeSafe
+        }
 
         private bool isSafe(string text)
         {
@@ -55,6 +56,6 @@ namespace CxCE_Demo
                 return true;
 
             return false;            
-        }//end makeSafe
-    }//end class
-}//end namespace
+        }
+    }
+}
