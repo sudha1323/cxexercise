@@ -14,9 +14,9 @@ namespace CxCE_Demo
             {
                 string ID = Request.QueryString[0];
                 getName(ID);
-            }//end try
-            catch { }//end catch
-        }//end Page_Load
+            }
+            catch { }
+        }
 
         private void getName(string ID)
         {
@@ -36,11 +36,11 @@ namespace CxCE_Demo
             {
                 username = reader["NAME"].ToString();
                 age = getAge(username);
-            }//end if
+            }
 
             message.Text = "Welcome " + username;
             conn.Close();
-        }//end getName
+        }
 
         private int getAge(string name)
         {
@@ -60,11 +60,11 @@ namespace CxCE_Demo
 
             conn.Close();
             return -1;
-        }//end getAge
+        }
 
         protected void submit_Click(object sender, EventArgs e)
         {
             getName(name.Text);
-        }//end submit_Click
-    }//end class
-}//end namespace
+        }
+    }
+}
