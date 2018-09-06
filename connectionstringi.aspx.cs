@@ -14,7 +14,7 @@ namespace CxCE_Demo
         protected void submit_Click(object sender, EventArgs e)
         {
             getName(name.Text);
-        }//end submit_Click
+        }
 
         private void getName(string database)
         {
@@ -33,10 +33,10 @@ namespace CxCE_Demo
             if (reader.HasRows)
             {
                 username = reader["NAME"].ToString();
-            }//end if
+            }
 
             message.Text = "Welcome " + username;
             conn.Close();
-        }//end getName
-    }//end class
-}//end namespace
+        }
+    }
+}
