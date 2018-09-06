@@ -13,7 +13,8 @@
         <br /><br />
         <asp:TextBox ID="name" runat="server" /> <asp:Button runat="server" ID="submit" OnClick="submit_Click" Text="Submit" />
         <br /><br />
-        <asp:Label ID="message" runat="server" />
+        <asp:Label ID="message" runat="server" /> <br />
+        <asp:Label ID="message2" runat="server" />
     </form>
 </body>
 </html>
