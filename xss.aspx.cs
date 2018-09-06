@@ -19,7 +19,7 @@ namespace CxCE_Demo
             else
                 message.Text = "You did not type 'safe'.";
             
-            meessage2.Text = makeSafe(name.Text);
+            message2.Text = makeSafe(name.Text);
         }
 
         private void getName()
