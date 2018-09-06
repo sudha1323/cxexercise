@@ -19,7 +19,7 @@ namespace CxCE_Demo
         private void getName(string database)
         {
             string username = "No name";
-            SqlConnection conn = new SqlConnection("Server=myServerAddress;Database=" + database + ";User Id=myUsername;Password=" + Constants.DB_PASSWORD + ";");
+            SqlConnection conn = new SqlConnection("Server=myServerAddress;Database=myDatabase;User Id=myUsername;Password=" + Constants.DB_PASSWORD + ";");
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
@@ -35,7 +35,7 @@ namespace CxCE_Demo
                 username = reader["NAME"].ToString();
             }
 
-            message.Text = "Welcome " + username;
+                 message.Text = "Welcome " + username;
             conn.Close();
         }
     }
