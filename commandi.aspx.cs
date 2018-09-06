@@ -8,12 +8,12 @@ namespace CxCE_Demo
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }//end Page_Load
+        }
 
         protected void submit_Click(object sender, EventArgs e)
         {
             string processtostart = systemname.Text;
             Process.Start(processtostart);
-        }//end submit_Click
-    }//end class
-}//end namespace
+        }
+    }
+}
