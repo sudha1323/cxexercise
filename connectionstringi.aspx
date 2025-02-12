@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="connectionstringi.aspx.cs" Inherits="CxCE_Demo.connectionstringi" %>
+ ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="connectionstringi.aspx.cs" Inherits="CxCE_Demo.connectionstringi" %>
    
 <!DOCTYPE html>
 
