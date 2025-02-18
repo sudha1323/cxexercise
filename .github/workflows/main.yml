@@ -1,20 +1,85 @@
-            - name: Checkmarx CxFlow Action
-  # You may pin to the exact commit or the version.
-  # uses: checkmarx-ts/checkmarx-cxflow-github-action@bfcb4817aadf2f63c9665ad901acfabd2410976e
-  uses: checkmarx-ts/checkmarx-cxflow-github-action@v2.3
-  with:
-    # Provide Checkmarx URL
-    checkmarx_url: http://sudhat-lt/ 
-    # Select a Checkmarx Team
-    team: # default is /CxServer
-    # Provide Checkmarx Username
-    checkmarx_username: sudha
-    # Provide Checkmarx Password
-    checkmarx_password: Ramji@2811
-    # Provide Checkmarx Client Secret
-    checkmarx_client_secret: # default is 
-    # Select a Checkmarx Project
-    project: CxSASt_github
-  
-  
-    
+name: Security Scan and Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger the pipeline on pushes to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on PRs to the main branch
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Build Step
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.7.0
+        with:
+          java-version: '11'  # Replace with your desired Java version
+          distribution: 'adoptopenjdk'
+          java-package: 'jdk'
+          architecture: 'x64'
+
+      - name: Build the project
+        run: |
+          echo "Running build..."
+          mvn clean install  # Example for Maven projects
+
+      # Test Step
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          mvn test  # Example for Maven projects
+
+      # Lint Step (optional, adjust based on your project)
+      - name: Run linting
+        run: |
+          echo "Running linting..."
+          npm run lint  # Example for JavaScript/TypeScript projects
+
+      # Security Scan Step (Checkmarx CxFlow)
+      - name: Checkmarx CxFlow Action
+        uses: checkmarx-ts/checkmarx-cxflow-github-action@v2.3
+        with:
+          checkmarx_url: http://sudhat-lt/  # Your Checkmarx base URL
+          team: "/CxServer"  # Your Checkmarx team (default is /CxServer)
+          checkmarx_username: "sudha"  # Your Checkmarx username
+          checkmarx_password: "Ramji@2811"  # Your Checkmarx password (consider storing in secrets)
+          checkmarx_client_secret: "014DF517-39D1-4453-B7B3-9930C563627C"  # Your Checkmarx client secret
+          project: "CxSASt_github"  # Your Checkmarx project
+          
+  deploy:
+    needs: build-and-scan
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Staging
+        run: |
+          echo "Deploying to staging environment..."
+          ./deploy-to-staging.sh  # Replace with your staging deployment script
+
+  production-deploy:
+    needs: deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://your-production-url.com  # Optional production URL
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production
+        run: |
+          echo "Deploying to production environment..."
+          ./deploy-to-production.sh  # Replace with your production deployment script
