@@ -1,49 +1,20 @@
- server:
-       port: 8982
-       logging:
-  file:
-    name: flow.log
- 
-cxflow:
-  bug-tracker: GitHub
-  bug-tracker-impl:
-    - GitHub
-  branches:
-    - main
-    - master
-  filter-severity:
-  filter-category:
-    - SQL_Injection
-    - Stored_XSS
-    - Reflected_XSS_All_Clients
-  filter-cwe:
-  filter-status:
-  #mitre-url: https://cwe.mitre.org/data/definitions/%s.html
-  #wiki-url: https://custodela.atlassian.net/wiki/spaces/AS/pages/79462432/Remediation+Guidance
- 
-checkmarx:
-  version: 9.0
-  username: sudha
-  password: Ramji@2811
-  client-id: resource_owner_client
-  client-secret: 014DF517-39D1-4453-B7B3-9930C563627C
-  scope: access_control_api sast_rest_api
-  base-url: http://sudhat-lt/
-  #multi-tenant: true
-  configuration: Default Configuration
-  cx-branch: true
-  #scan-preset: Checkmarx Defaul
-  enabled-zip-scan: false
-  preserve-xml: true
-  team: /CxServer
-  url: ${checkmarx.base-url}/cxrestapi
-  #scan-preset: Checkmarx Default
-  #incremental: true
-  #WSDL Config
-  portal-url: ${checkmarx.base-url}/cxwebinterface/Portal/CxWebService.asmx
-  sdk-url: ${checkmarx.base-url}/cxwebinterface/SDK/CxSDKWebService.asmx
-  portal-wsdl: ${checkmarx.base-url}/Portal/CxWebService.asmx?wsdl
-  sdk-wsdl: ${checkmarx.base-url}/SDK/CxSDKWebService.asmx?wsdl
-  scan-queuing: false
-  scan-queuing-timeout: 720
- 
+            - name: Checkmarx CxFlow Action
+  # You may pin to the exact commit or the version.
+  # uses: checkmarx-ts/checkmarx-cxflow-github-action@bfcb4817aadf2f63c9665ad901acfabd2410976e
+  uses: checkmarx-ts/checkmarx-cxflow-github-action@v2.3
+  with:
+    # Provide Checkmarx URL
+    checkmarx_url: http://sudhat-lt/ 
+    # Select a Checkmarx Team
+    team: # default is /CxServer
+    # Provide Checkmarx Username
+    checkmarx_username: sudha
+    # Provide Checkmarx Password
+    checkmarx_password: Ramji@2811
+    # Provide Checkmarx Client Secret
+    checkmarx_client_secret: # default is 
+    # Select a Checkmarx Project
+    project: CxSASt_github
+  
+  
+    
